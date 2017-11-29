@@ -1,0 +1,99 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:appian:types:VASU" targetNamespace="urn:com:appian:types:VASU">
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVASU%7DVasu_Gender.xsd" />
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVASU%7DVasu_Department.xsd" />
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVASU%7DVasu_Address.xsd" />
+  <xsd:complexType name="Vasu_Employee">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+		@Table(name="vasuemployee")
+		@SecondaryTable(name="vasumoreemployeedetails", pkJoinColumns=@PrimaryKeyJoinColumn(name="eid", referencedColumnName="id"))
+      </xsd:appinfo>
+      <xsd:documentation><![CDATA[contains employee details]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="firstname" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lastname" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="gender" nillable="true" type="tns:Vasu_Gender">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToOne(cascade=CascadeType.ALL)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dob" nillable="true" type="xsd:date" />
+      <xsd:element name="joiningdate" nillable="true" type="xsd:date" />
+      <xsd:element name="department" nillable="true" type="tns:Vasu_Department">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToOne(cascade=CascadeType.ALL)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="bloodgroup" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="orgempid" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="email" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="fathername" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="fathername", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mothername" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="mothername", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="totalexperience" nillable="true" type="xsd:double">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="totalexperience", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="relevantexperience" nillable="true" type="xsd:double">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="relevantexperience", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="currentpassportnumber" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="currentpassportnumber", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="currentdesignation" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="currentdesignation", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="nationality" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="nationality", table="vasumoreemployeedetails")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="address" type="tns:Vasu_Address">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToMany(cascade=CascadeType.ALL, indexed=false)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="isActive" nillable="true" type="xsd:boolean" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

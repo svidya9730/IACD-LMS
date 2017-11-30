@@ -11,9 +11,7 @@
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="countryName" nillable="true" type="xsd:string">
-        <xsd:annotation>
-          <xsd:appinfo source="appian.jpa"> @Column(name="country_name", columnDefinition="VARCHAR(255)")</xsd:appinfo>
-        </xsd:annotation>
+        
       </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
